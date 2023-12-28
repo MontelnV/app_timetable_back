@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Courses</title>
+</head>
+<body>
+    <h1>Courses</h1>
+    {% for course in courses %}
+        <a href="/groups/{{ course.id }}">{{ course.name }}</a><br>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Facultets</title>
+</head>
+<body>
+    <h1>Facultets</h1>
+    {% for facultet in facultets %}
+        <a href="/courses/{{ facultet.id }}">{{ facultet.name }}</a><br>
+    {% endfor %}
+</body>
+</html>

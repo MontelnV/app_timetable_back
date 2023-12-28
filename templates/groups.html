@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Groups</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script>
+        $(document).ready(function() {
+            $(".group-link").click(function(e) {
+                e.preventDefault();  // Предотвращаем переход по ссылке по умолчанию
+                var group_id = $(this).data("group-id");
+                $.get("/get_group_data/" + group_id, function(data) {
+                    $("#group-data-modal .modal-body").html(data);
+                    $("#group-data-modal").modal();
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Groups</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+        </tr>
+        {% for group in groups %}
+            <tr>
+                <td><a href="#" class="group-link" data-group-id="{{ group.id }}">{{ group.name }}</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <div class="modal" id="group-data-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Group Data</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <!-- Данные о группе будут отображаться здесь -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
